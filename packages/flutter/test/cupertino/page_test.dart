@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// @dart = 2.8
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -276,10 +274,10 @@ void main() {
   testWidgets('test edge swipes work with media query padding (LTR)', (WidgetTester tester) async {
     await tester.pumpWidget(
       CupertinoApp(
-        builder: (BuildContext context, Widget navigator) {
+        builder: (BuildContext context, Widget? navigator) {
           return MediaQuery(
             data: const MediaQueryData(padding: EdgeInsets.only(left: 40)),
-            child: navigator,
+            child: navigator!,
           );
         },
         home: const Placeholder(),
@@ -320,12 +318,12 @@ void main() {
   testWidgets('test edge swipes work with media query padding (RLT)', (WidgetTester tester) async {
     await tester.pumpWidget(
       CupertinoApp(
-        builder: (BuildContext context, Widget navigator) {
+        builder: (BuildContext context, Widget? navigator) {
           return Directionality(
             textDirection: TextDirection.rtl,
             child: MediaQuery(
               data: const MediaQueryData(padding: EdgeInsets.only(right: 40)),
-              child: navigator,
+              child: navigator!,
             ),
           );
         },
@@ -471,7 +469,11 @@ void main() {
     expect(find.text('subpage'), findsOneWidget);
     expect(find.text('home'), findsNothing);
 
+<<<<<<< HEAD
     navigator.currentState.pop();
+=======
+    navigator.currentState!.pop();
+>>>>>>> 022b333a089afb81c471ec43d1f1f4f26305d876
     await tester.pump();
 
     expect(find.text('subpage'), findsOneWidget);
@@ -498,14 +500,22 @@ class RtlOverrideWidgetsLocalization implements WidgetsLocalizations {
 class KeepsStateTestWidget extends StatefulWidget {
   const KeepsStateTestWidget({this.navigatorKey});
 
+<<<<<<< HEAD
   final Key navigatorKey;
+=======
+  final Key? navigatorKey;
+>>>>>>> 022b333a089afb81c471ec43d1f1f4f26305d876
 
   @override
   State<KeepsStateTestWidget> createState() => _KeepsStateTestWidgetState();
 }
 
 class _KeepsStateTestWidgetState extends State<KeepsStateTestWidget> {
+<<<<<<< HEAD
   String _subpage = 'subpage';
+=======
+  String? _subpage = 'subpage';
+>>>>>>> 022b333a089afb81c471ec43d1f1f4f26305d876
 
   @override
   Widget build(BuildContext context) {
@@ -514,7 +524,11 @@ class _KeepsStateTestWidgetState extends State<KeepsStateTestWidget> {
         key: widget.navigatorKey,
         pages: <Page<void>>[
           const CupertinoPage<void>(child: Text('home')),
+<<<<<<< HEAD
           if (_subpage != null) CupertinoPage<void>(child: Text(_subpage)),
+=======
+          if (_subpage != null) CupertinoPage<void>(child: Text(_subpage!)),
+>>>>>>> 022b333a089afb81c471ec43d1f1f4f26305d876
         ],
         onPopPage: (Route<dynamic> route, dynamic result) {
           if (!route.didPop(result)) {
